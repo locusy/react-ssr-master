@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/container/Home/index.js":
+/*!*************************************!*\
+  !*** ./src/container/Home/index.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Home = function Home() {\n    return _react2.default.createElement(\n        'div',\n        null,\n        '\\u9996\\u9875'\n    );\n};\nexports.default = Home;\n\n//# sourceURL=webpack:///./src/container/Home/index.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nvar express = __webpack_require__(/*! express */ \"express\");\nvar app = express();\n\napp.get('/', function (req, res) {\n    res.send('<html>\\n            <head><link rel=\"shortcut icon\" href=\"#\" /></head>\\n            <body>\\n                fires\\n            </body>\\n        </html> ');\n});\n\napp.listen(2000, function () {\n    console.log('server is listening at port 2000...');\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("\n\nvar _express = __webpack_require__(/*! express */ \"express\");\n\nvar _express2 = _interopRequireDefault(_express);\n\nvar _index = __webpack_require__(/*! ./container/Home/index */ \"./src/container/Home/index.js\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar app = (0, _express2.default)();\n// 将home组件渲染成字符串 直接返回给浏览器\nvar content = (0, _server.renderToString)(_react2.default.createElement(_index2.default, null));\n\napp.get('/', function (req, res) {\n    res.send('<html>\\n            <head>\\n                <link rel=\"shortcut icon\" href=\"#\" />\\n            </head>\\n            <body>\\n                ' + content + '\\n            </body>\\n        </html> ');\n});\n\napp.listen(2000, function () {\n    console.log('server is listening at port 2000...');\n});\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -106,6 +118,28 @@ eval("\n\nvar express = __webpack_require__(/*! express */ \"express\");\nvar ap
 /***/ (function(module, exports) {
 
 eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_%22react%22?");
+
+/***/ }),
+
+/***/ "react-dom/server":
+/*!***********************************!*\
+  !*** external "react-dom/server" ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
 
 /***/ })
 

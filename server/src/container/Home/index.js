@@ -1,4 +1,4 @@
-const react = require('react')
+import React from 'react'
 
 const Home = () => {
     return (
@@ -7,5 +7,4 @@ const Home = () => {
         </div>
     )
 }
-
-module.exports = Home
+export default Home

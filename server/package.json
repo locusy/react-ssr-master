@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src/index.js",
-    "start:dist": "nodemon ./dist/bundle.js",
-    "build": "webpack --config webpack.server.js",
+    "dev": "npm-run-all --parallel dev:**",
+    "dev:start": "nodemon --watch dist --exec node \"./dist/bundle.js\"",
+    "dev:build": "webpack --config webpack.server.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,17 +1,12 @@
 const path = require('path')
-const nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-    // 客户端(浏览器端)的nodejs代码webpack会打包，而服务器端的不用
-    // 以下配置代表打包的是服务器端的代码，会保留nodejs写法的代码，比如require,module.exports
-    target: 'node',
     mode: 'development',
-    entry: './src/index.js',
+    entry: './src/client/index.js',
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'index.js',
+        path: path.resolve(__dirname, 'public')
     },
-    externals: [nodeExternals()],
     module: {
         rules: [
             {

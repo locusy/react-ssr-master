@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
                 <link rel="shortcut icon" href="#" />
             </head>
             <body>
-                ${content}
+                <div id="root">${content}</div>
                 <script src="index.js"></script>
             </body>
         </html> `

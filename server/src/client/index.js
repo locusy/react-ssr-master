@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom'
 // import Home from '../container/Home'
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './../routes'
+import { Provider } from 'react-redux'
+import { getStore } from '../store'
 
 const App = () => {
     return (
-        <BrowserRouter>
-            {Routes}
-        </BrowserRouter>
+        <Provider store={getStore()}>
+            <BrowserRouter>
+                {Routes}
+            </BrowserRouter>
+        </Provider>
     )
 }
 

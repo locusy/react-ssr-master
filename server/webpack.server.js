@@ -8,7 +8,7 @@ const serverConfig = {
     // 以下配置代表打包的是服务器端的代码，会保留nodejs写法的代码，比如require,module.exports
     target: 'node',
     mode: 'development',
-    entry: './src/client/index.js',
+    entry: './src/server/index.js',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist')

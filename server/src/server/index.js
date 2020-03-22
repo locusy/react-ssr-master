@@ -1,7 +1,6 @@
 import express from 'express'
-import Home from '../container/Home/index'
-import React from 'react'
-import { renderToString } from 'react-dom/server'
+import { render } from './utils'
+// import Home from '../container/Home/index'
 const app = express();
 
 /**
@@ -24,20 +23,28 @@ app.use(express.static('public'))
  * 将home组件渲染成字符串，直接返回给浏览器，这样在浏览器可以查看到htmt内容 形成简易的服务端渲染
  * renderToString只能将基本的信息转成字符串 点击事件等无法生效 所以需要同构
  */
-const content = renderToString(<Home />)
+// const content = renderToString(<Home />)
 
-app.get('/', function(req, res) {
-    res.send(
-        `<html>
-            <head>
-                <link rel="shortcut icon" href="#" />
-            </head>
-            <body>
-                <div id="root">${content}</div>
-                <script src="index.js"></script>
-            </body>
-        </html> `
-    )
+app.get('*', function(req, res) {
+    // const content = renderToString(
+    //     <StaticRouter location={req.path} context={{}}>
+    //         {Routes}
+    //     </StaticRouter>
+    // )
+    // res.send(
+    //     `<html>
+    //         <head>
+    //             <link rel="shortcut icon" href="#" />
+    //         </head>
+    //         <body>
+    //             <div id="root">${content}</div>
+    //             <script src="index.js"></script>
+    //         </body>
+    //     </html> `
+    // )
+
+    // 使用封装后的render函数
+    res.send(render(req))
 })
 
 app.listen(2000, () => {

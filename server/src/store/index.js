@@ -1,11 +1,16 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
+import home from './home'
 
-const reducer = function(state = {initState: 'initState'}, action) {
-    return state
-}
-const getStore = () => {
+const reducer = combineReducers({
+    home
+})
+
+export const getStore = () => {
     return createStore(reducer, applyMiddleware(thunk))
 }
 
-export default getStore
+export const getClientStore = () => {
+    const initialState = window.context.state
+    return createStore(reducer, initialState, applyMiddleware(thunk))
+}

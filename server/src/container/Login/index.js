@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { Component }from 'react'
 import Header from '../../components/Header'
 
-const Login = () => {
-    return (
-        <div>
-            <Header />
-            Login yee
-        </div>
-    )
+class Login extends Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                Login yee
+            </div>
+        )
+    }
 }
+
 export default Login

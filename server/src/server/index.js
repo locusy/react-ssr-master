@@ -1,4 +1,7 @@
 import express from 'express'
+import { matchRoutes } from 'react-router-config'
+import routes from './../routes'
+import { getStore } from '../store'
 import { render } from './utils'
 // import Home from '../container/Home/index'
 const app = express();
@@ -43,8 +46,31 @@ app.get('*', function(req, res) {
     //     </html> `
     // )
 
-    // 使用封装后的render函数
-    res.send(render(req))
+    /**
+     *  这里用getStore函数而不是 直接使用的store 确保每次进来不同页面的时候获取的store唯一
+     */
+    const store = getStore()
+
+    const promises = []
+    /**
+     * 将store里面的异步数据也在页面可以渲染
+     */
+    // 根据路由的路径，将路由对应的组件放在matchRoutes里面
+    const matchedRoutes = matchRoutes(routes, req.path)
+    // console.log(matchedRoutes)
+    // 让matchRoutes里面所有的组件，对应的loadData方法执行一次，来往store里面加数据
+    matchedRoutes.forEach(item => {
+        console.log(item.route.component, 'item')
+        if(item.route.component.loadData) {
+            promises.push(item.route.component.loadData(store))
+        }
+    })
+    // console.log('promises', promises)
+    // 由于是异步action，所以需要等所有promise都执行完成，数据获取完成后渲染页面
+    Promise.all(promises).then(() => {
+        console.log('getState', store.getState())
+        res.send(render(store, routes, req))
+    })
 })
 
 app.listen(2000, () => {

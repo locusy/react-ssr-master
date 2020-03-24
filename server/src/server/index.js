@@ -70,16 +70,27 @@ app.get('*', function(req, res) {
     // console.log(matchedRoutes)
     // 让matchRoutes里面所有的组件，对应的loadData方法执行一次，来往store里面加数据
     matchedRoutes.forEach(item => {
-        console.log(item.route.component, 'item')
+        // console.log(item.route.component, 'item')
         if(item.route.component.loadData) {
             promises.push(item.route.component.loadData(store))
         }
     })
+
+    const context = {}
+    const html = render(store, routes, req, context)
+
     // console.log('promises', promises)
     // 由于是异步action，所以需要等所有promise都执行完成，数据获取完成后渲染页面
     Promise.all(promises).then(() => {
-        console.log('getState', store.getState())
-        res.send(render(store, routes, req))
+        // console.log('getState', store.getState())
+        // console.log(context)
+        // 如果context.NOT_FOUNED存在 则访问的是NotFound组件
+        if(context.NOT_FOUNED) {
+            res.status = 404
+            res.send(html)
+        } else {
+            res.send(html)
+        }
     })
 })
 

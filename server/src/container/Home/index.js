@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Header from '../../components/Header'
 import { ActionGetList } from './../../store/home/actions';
+import styles from './style.css'
 
 // 同构：一套react代码，在服务器端执行一次，再客户端执行一次
 class Home extends Component {
     constructor(props) {
         super(props)
+    }
+
+    componentWillMount() {
+        // 只有服务端才有this.props.staticContext和styles._getCss() 因为服务端用的是isomorphic-style-loader
+        // console.log(this.props.staticContext, styles._getCss())
+        if(this.props.staticContext) {
+            this.props.staticContext.css = styles._getCss()
+        }
     }
 
     componentDidMount() {
@@ -20,8 +28,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                <Header />
+            <div className={styles.wrap}>
                 {this.props.list.map(item => (item))}
                 <br/>
                 hello,{this.props.name}
@@ -33,7 +40,7 @@ class Home extends Component {
 
 Home.loadData = (store) => {
     // 这个函数负责在服务端渲染之前 把这个路由需要的数据提前加载好
-    // 服务端运行的代码传true
+    // 服务端运行的代码传true,但是使用了thunk.withExtraArgument()后就不需要传了
     return store.dispatch(ActionGetList(true))
 }
 

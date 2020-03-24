@@ -13,15 +13,13 @@ const app = express();
 app.use(express.static('public'))
 
 // NodeJS中间层代理
-// 如果访问 /api/list.json 则req.url = list.json
-// 那么相当于访问localhost:8080/ssr/api/list.json
+// 客户端如果访问 /api/list.json 则req.url = list.json
+// 那么相当于代理到localhost:8080/ssr/api/list.json
 app.use('/api', proxy('localhost:8080', {
     proxyReqPathResolver: function (req) {
       return '/ssr/api' + req.url
     }
 }))
-
-
 
 /**
  * 虚拟dom是一个真实Dom的javascript对象映射

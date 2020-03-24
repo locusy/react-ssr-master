@@ -33,7 +33,8 @@ class Home extends Component {
 
 Home.loadData = (store) => {
     // 这个函数负责在服务端渲染之前 把这个路由需要的数据提前加载好
-    return store.dispatch(ActionGetList())
+    // 服务端运行的代码传true
+    return store.dispatch(ActionGetList(true))
 }
 
 const mapStateToProps = (state) => ({

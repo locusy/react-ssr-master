@@ -4,6 +4,7 @@ import App from './App'
 import Home from './container/Home'
 import Login from './container/Login'
 import NotFound from './container/NotFound'
+import Translation from './container/Translation'
 
 /**
  * 路由配置需要在客户端和服务端 都跑一遍
@@ -28,6 +29,11 @@ const routes = [
             {
                 path: '/login',
                 component: Login,
+                exact: true
+            },
+            {
+                path: '/trans',
+                component: Translation,
                 exact: true
             },
             {

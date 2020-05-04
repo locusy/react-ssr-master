@@ -1,6 +1,3 @@
-### react-ssr-master
-    react-ssr nodejs
-
 ### 同构
     一套react代码，在服务器端执行一次，再客户端执行一次
 

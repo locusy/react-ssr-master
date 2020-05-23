@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { ActionGetList } from './../../store/home/actions';
 import styles from './style.css'
 
+
 // 同构：一套react代码，在服务器端执行一次，再客户端执行一次
 class Home extends Component {
     constructor(props) {

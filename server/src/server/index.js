@@ -33,7 +33,7 @@ app.use('/api', proxy('localhost:8080', {
   */
 
 /**
- * 将home组件渲染成字符串，直接返回给浏览器，这样在浏览器可以查看到htmt内容 形成简易的服务端渲染
+ * 将home组件渲染成字符串，直接返回给浏览器，这样在浏览器可以查看到html内容 形成简易的服务端渲染
  * renderToString只能将基本的信息转成字符串 点击事件等无法生效 所以需要同构
  */
 // const content = renderToString(<Home />)
